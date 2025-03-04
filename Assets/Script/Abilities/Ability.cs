@@ -8,15 +8,13 @@ public abstract class Ability : ScriptableObject
     [SerializeField] protected float cooldownTime;
     [SerializeField] protected Transform mainCharacter;
     protected PlayerStats playerStats;
-    protected GameOver gameOver;
     protected float elapsedTime;
     protected bool cooldown = false;
 
     public virtual void Initialize(Transform character)
-    { 
+    {
         mainCharacter = character;
         playerStats = mainCharacter.GetComponent<PlayerStats>();
-        gameOver = Object.FindAnyObjectByType<GameOver>();
         GameEvents.PlayerDied.AddListener(GameOver);
     }
 

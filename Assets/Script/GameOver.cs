@@ -6,7 +6,6 @@ public class GameOver : MonoBehaviour
     [SerializeField] Health health;
     [SerializeField] GameObject gameOverUI;
     [SerializeField] TMP_Text gameOverText;
-    [SerializeField] RestartGame restartGame;
     private bool gameIsOver;
 
     void Start()
@@ -16,18 +15,27 @@ public class GameOver : MonoBehaviour
         gameIsOver = false;
     }
 
+    void Update()
+    {
+        if (gameIsOver)
+        {
+            if (Input.GetKey(KeyCode.R))
+            {
+                GameEvents.GameRestart.Invoke();
+            }
+        }
+    }
+
     private void PlayerJustDied()
     {
         gameOverText.text = "Has perdido, presiona R para reiniciar";
         gameOverUI.SetActive(true);
-        restartGame.enabled = true;
         gameIsOver = true;
     }
 
     void GameRestarted()
     {
         gameOverUI.SetActive(false);
-        restartGame.enabled = false;
         gameIsOver = false;
     }
 
