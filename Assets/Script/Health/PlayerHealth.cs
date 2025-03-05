@@ -5,6 +5,7 @@ public class PlayerHealth : Health
 {
     [SerializeField] PlayerStats playerStats;
     [SerializeField] public bool improveRegeneration = false;
+    
     protected override void OnDeath()
     {
         base.OnDeath();

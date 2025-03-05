@@ -7,10 +7,10 @@ public class AbilityHolder : MonoBehaviour
     [SerializeField] Image[] cooldownIcons;
     [SerializeField] Vector3 selectedScale = new Vector3(1f, 1f, 1f);
     [SerializeField] Vector3 defaultScale = new Vector3(0.8f, 0.8f, 0.8f);
-    [SerializeField] GameOver gameOver;
     [SerializeField] ParticleSystem cdParticles;
     [SerializeField] Transform mainCharacterTransform;
     private int activePosition;
+    bool gameIsOver;
 
     void Start()
     {
@@ -21,11 +21,12 @@ public class AbilityHolder : MonoBehaviour
         activePosition = 1;
         UpdateCooldownIcons();
         GameEvents.GameRestart.AddListener(GameRestarted);
+        GameEvents.PlayerDied.AddListener(GameOver);
     }
 
     void Update()
     {
-        if (gameOver.GameIsOver) return;
+        if (gameIsOver) return;
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -84,6 +85,12 @@ public class AbilityHolder : MonoBehaviour
         {
             cooldownIcons[i].fillAmount = 1f;
         }
+        gameIsOver = false;
+    }
+
+    void GameOver()
+    {
+        gameIsOver = true;
     }
 
     void UpdateCooldownIcons()

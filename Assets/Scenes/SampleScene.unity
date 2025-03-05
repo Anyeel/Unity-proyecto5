@@ -162,9 +162,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 107284219}
-  - component: {fileID: 107284220}
-  - component: {fileID: 107284221}
   - component: {fileID: 107284222}
+  - component: {fileID: 107284223}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -187,7 +186,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &107284220
+--- !u!114 &107284222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107284217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ba6bcc9fc6b2b4d80425c21812d37f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &107284223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,30 +213,6 @@ MonoBehaviour:
   health: {fileID: 1340287053}
   gameOverUI: {fileID: 1920308635}
   gameOverText: {fileID: 1561977700}
---- !u!114 &107284221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107284217}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4debe9057fbd82a44a41ee6eae95e8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &107284222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107284217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ba6bcc9fc6b2b4d80425c21812d37f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &383725362
 GameObject:
   m_ObjectHideFlags: 0
@@ -15513,7 +15500,6 @@ MonoBehaviour:
   - {fileID: 1323469468}
   selectedScale: {x: 1, y: 1, z: 1}
   defaultScale: {x: 0.8, y: 0.8, z: 0.8}
-  gameOver: {fileID: 107284220}
   cdParticles: {fileID: 912197920}
   mainCharacterTransform: {fileID: 1340287047}
 --- !u!212 &1340287046

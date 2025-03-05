@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class GameOver : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField] Health health;
     [SerializeField] GameObject gameOverUI;
@@ -11,7 +11,6 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         GameEvents.PlayerDied.AddListener(PlayerJustDied);
-        GameEvents.GameRestart.AddListener(GameRestarted);
         gameIsOver = false;
     }
 
@@ -21,7 +20,7 @@ public class GameOver : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.R))
             {
-                GameEvents.GameRestart.Invoke();
+                GameRestarted();
             }
         }
     }
@@ -35,12 +34,8 @@ public class GameOver : MonoBehaviour
 
     void GameRestarted()
     {
+        GameEvents.GameRestart.Invoke();
         gameOverUI.SetActive(false);
         gameIsOver = false;
-    }
-
-    public bool GameIsOver
-    {
-        get { return gameIsOver; }
     }
 }

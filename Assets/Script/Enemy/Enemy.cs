@@ -9,15 +9,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxSpeed = 4f;
     [SerializeField] float damage = 10f;
     [SerializeField] float fleeingSpeed = 10f;
-    GameOver gameOver;
+    bool gameIsOver;
     Transform mainCharacterTransform;
 
     void Start()
     {
-        gameOver = Object.FindAnyObjectByType<GameOver>();
         mainCharacterTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         speed = Random.Range(minSpeed, maxSpeed);
         GameEvents.GameRestart.AddListener(GameRestarted);
+        GameEvents.PlayerDied.AddListener(GameOver);
     }
 
     void Update()
@@ -28,11 +28,11 @@ public class Enemy : MonoBehaviour
 
         movementInput = movementInput.normalized;
 
-        if (!gameOver.GameIsOver)
+        if (!gameIsOver)
         {
             transform.position += speed * movementInput * Time.deltaTime;
         }
-        else if (gameOver.GameIsOver)
+        else if (gameIsOver)
         {
             transform.position += speed * movementInput * Time.deltaTime * -fleeingSpeed;
         }
@@ -40,14 +40,19 @@ public class Enemy : MonoBehaviour
 
     void GameRestarted()
     {
+        gameIsOver = false;
         Destroy(gameObject);
+    }
+    void GameOver()
+    {
+        gameIsOver = true;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.gameObject.CompareTag("Player"))
         {
-            collision.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage, GameEvents.PlayerHurt);
+            collision.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }

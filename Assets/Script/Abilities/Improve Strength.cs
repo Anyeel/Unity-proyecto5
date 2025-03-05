@@ -3,7 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ImproveStrength")]
 public class ImproveStrength : Ability
 {
-    PlayerStats playerStats;
 
     public override void Initialize(Transform character)
     {
